@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
         if (result) {
             //compare passwords       
             if (result.password===password) {
-                res.status(200).send("success")
+                res.status(200).send(result)
              
             } else {
                
