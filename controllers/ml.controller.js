@@ -4,11 +4,40 @@ const MLScore = require('../models/ml.scorecard.model')
 // create
 exports.addMLScore = async (req, res) => {
     try {
-        console.log(req.body)
-          const score = new MLScore(req.body);
-    
-        await score.save();
-        res.status(200).send(score);
+        
+        const score = new MLScore(
+          {
+              user:req.body.user,
+              month: req.body.month,
+              year: req.body.year,
+              communication: {
+                  rating: req.body.communication.rating,
+                  review: req.body.communication.review
+                },
+                marketing: {
+                  rating: req.body.marketing.rating,
+                  review: req.body.marketing.review
+                },
+                skill_dev: {
+                  rating: req.body.skill_dev.rating,
+                  review: req.body.skill_dev.review
+                },
+                billable_utilisation: {
+                  rating: req.body.billable_utilisation.rating,
+                  review: req.body.billable_utilisation.review
+                },
+                team_contribution: {
+                  rating: req.body.team_contribution.rating,
+                  review: req.body.team_contribution.review
+                },
+                average:
+                  (req.body.communication.rating + req.body.marketing.rating + req.body.skill_dev.rating + req.body.billable_utilisation.rating + req.body.team_contribution.rating) / 5,
+                
+          });
+  
+      await score.save();
+      const result = await MLScore.findById(score._id).populate('user');
+      res.status(200).send(result);
       } catch (err) {
         res.send(err);
       }

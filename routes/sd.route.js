@@ -15,5 +15,8 @@ router.post("/", async(req,res)=> {
 router.get("/user/:id", async(req,res)=> {
     await SDController.getUserSDScore(req, res);
 });
+router.get("/avg/:id", async(req,res)=> {
+    await SDController.getAvgSDScore(req, res);
+});
 
 module.exports = router;

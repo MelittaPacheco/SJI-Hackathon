@@ -10,27 +10,63 @@ const ml_scoreCardSchema = new Schema({
     month: {
         type: String,
     },
+    year:{
+        type:Number
+    },
     communication:{
-        type: Map,
-        of: String
+        rating: {
+            type: Number,
+            required: true
+          },
+          review: {
+            type: String,
+            required: true
+          }
     },
     marketing:{
-        type: Map,
-        of: String
+        rating: {
+            type: Number,
+            required: true
+          },
+          review: {
+            type: String,
+            required: true
+          }
     },
     skill_dev:{
-        type: Map,
-        of: String
+        rating: {
+            type: Number,
+            required: true
+          },
+          review: {
+            type: String,
+            required: true
+          }
     },
     billable_utilisation:{
-        type: Map,
-        of: String
+        rating: {
+            type: Number,
+            required: true
+          },
+          review: {
+            type: String,
+            required: true
+          }
     },
     team_contribution:{
-        type: Map,
-        of: String
-    }
-
+        rating: {
+            type: Number,
+            required: true
+          },
+          review: {
+            type: String,
+            required: true
+          }
+    },
+    average:{
+        type: Number,
+    required: true,}
+    
     
 },{timestamps:true});
 

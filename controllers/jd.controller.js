@@ -4,16 +4,46 @@ const JDScore = require('../models/jd_scorecard.model')
 // create
 exports.addJDScore = async (req, res) => {
     try {
-        console.log(req.body)
-          const score = new JDScore(req.body);
+        console.log(req.body.criteria_one.rating)
+          const score = new JDScore(
+            {
+                user:req.body.user,
+                month: req.body.month,
+                year: req.body.year,
+                criteria_one: {
+                    rating: req.body.criteria_one.rating,
+                    review: req.body.criteria_one.review
+                  },
+                  criteria_two: {
+                    rating: req.body.criteria_two.rating,
+                    review: req.body.criteria_two.review
+                  },
+                  criteria_three: {
+                    rating: req.body.criteria_three.rating,
+                    review: req.body.criteria_three.review
+                  },
+                  criteria_four: {
+                    rating: req.body.criteria_four.rating,
+                    review: req.body.criteria_four.review
+                  },
+                  criteria_five: {
+                    rating: req.body.criteria_five.rating,
+                    review: req.body.criteria_five.review
+                  },
+                  average:
+                    (req.body.criteria_one.rating + req.body.criteria_two.rating + req.body.criteria_three.rating + req.body.criteria_four.rating + req.body.criteria_five.rating) / 5,
+                  
+            });
     
         await score.save();
-        res.status(200).send(score);
+        const result = await JDScore.findById(score._id).populate('user');
+        res.status(200).send(result);
       } catch (err) {
         res.send(err);
       }
 
 }
+//
 // delete
 exports.deleteJDScore = async (req, res) => {
     console.log(req.params.id)

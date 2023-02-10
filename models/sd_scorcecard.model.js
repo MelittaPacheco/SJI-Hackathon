@@ -10,27 +10,67 @@ const sd_scoreCardSchema = new Schema({
     month: {
         type: String,
     },
+    year:{
+        type:Number
+    },
     estimate:{
-        type: Map,
-        of: String
+        rating: {
+            type: Number,
+            required: true
+          },
+          review: {
+            type: String,
+            required: true
+          }
     },
+    
     BD_estimate:{
-        type: Map,
-        of: String
+        rating: {
+            type: Number,
+            required: true
+          },
+          review: {
+            type: String,
+            required: true
+          }
     },
+    
     code_standard:{
-        type: Map,
-        of: String
+        rating: {
+            type: Number,
+            required: true
+          },
+          review: {
+            type: String,
+            required: true
+          }
     },
-    OKR:{
-        type: Map,
-        of: String
+   
+    okr:{
+        rating: {
+            type: Number,
+            required: true
+          },
+          review: {
+            type: String,
+            required: true
+          }
     },
+   
     team_contribution:{
-        type: Map,
-        of: String
-    }
-
+        rating: {
+            type: Number,
+            required: true
+          },
+          review: {
+            type: String,
+            required: true
+          }
+    },
+    
+    average:{
+        type: Number,
+    required: true,}
     
 },{timestamps:true});
 

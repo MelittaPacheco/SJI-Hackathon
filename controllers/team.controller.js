@@ -6,7 +6,7 @@ exports.addTeam = async (req, res) => {
     try {
         console.log(req.body)
           const team = new Team({
-            name: req.body. name,
+            name: req.body.name,
             
         });
         
