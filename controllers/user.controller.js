@@ -22,6 +22,37 @@ exports.addUser = async (req, res) => {
       }
 
 }
+
+//signin
+exports.login = async (req, res) => {
+    const email = req.body.name;
+    const password = req.body.password;
+
+    try {
+        let result = await User.findOne(email).lean();
+        console.log(result)
+        if (result) {
+            //compare passwords       
+            if (result.password===password) {
+                res.status(200).send("success")
+              
+                
+                    
+            } else {
+               
+                res.send("Invalid Username or Password. Please try again")
+            }
+        } else {
+         
+            res.status(404).send("Account cannot be found. Try signing up")
+        }
+    }
+     catch (err) {
+        console.log(err)
+     
+    res.send(err)
+}
+}
 // delete
 exports.deleteUser = async (req, res) => {
     console.log(req.params.id)

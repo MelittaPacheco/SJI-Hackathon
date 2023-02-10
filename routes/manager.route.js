@@ -9,6 +9,9 @@ router.get("/", async (req, res) => {
 router.get("/:id", async(req,res)=> {
     await ManagerController.getManager(req, res);
 });
+router.post("/login", async (req, res) => {
+    await ManagerController.login(req, res);
+});
 router.post("/", async(req,res)=> {
     await ManagerController.addManager(req, res);
 });
