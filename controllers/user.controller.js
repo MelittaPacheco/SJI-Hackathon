@@ -29,11 +29,12 @@ exports.login = async (req, res) => {
     const password = req.body.password;
 
     try {
-        let result = await User.findOne(email).lean();
+        let result = await User.findOne(email).populate('team');
         console.log(result)
         if (result) {
             //compare passwords       
             if (result.password===password) {
+
                 res.status(200).send(result)
               
                 
